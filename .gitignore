@@ -6,3 +6,4 @@ venv/
 env/
 *.egg-info/
 .django_secret_key
+graphify-out/

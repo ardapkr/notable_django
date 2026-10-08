@@ -39,9 +39,11 @@ def _get_secret_key():
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY') or _get_secret_key()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Local development defaults to DEBUG on; set DJANGO_DEBUG=0 for a deployment.
+DEBUG = os.environ.get('DJANGO_DEBUG', '1') == '1'
 
-ALLOWED_HOSTS = []
+# Comma-separated, e.g. DJANGO_ALLOWED_HOSTS=notes.example.com
+ALLOWED_HOSTS = [h for h in os.environ.get('DJANGO_ALLOWED_HOSTS', '').split(',') if h]
 
 
 # Application definition
@@ -92,7 +94,8 @@ WSGI_APPLICATION = 'notable_django.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # DJANGO_DB_PATH lets you point at another file (e.g. a demo database)
+        'NAME': os.environ.get('DJANGO_DB_PATH') or BASE_DIR / 'db.sqlite3',
     }
 }
 
