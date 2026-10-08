@@ -19,7 +19,7 @@ frontend fit together in Django.
 
 ## Tech stack
 
-Python · Django 6 · django-tastypie · SQLite · vanilla JavaScript · GitHub Actions
+Python · Django 6 · django-tastypie · SQLite · vanilla JavaScript · GitHub Actions · Claude Code
 
 ## Run it
 
